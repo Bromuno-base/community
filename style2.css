@@ -125,6 +125,9 @@ ul {
     overflow: hidden;
     color: hsl(28, 72%, 53%);
 }
+.initial{
+    display: none;
+}
 .detail {
     position: absolute;
     top: 0;
@@ -140,12 +143,12 @@ ul {
     border-style: solid;
     border-color: inherit;
     display: flex;
-    max-height: 100%;
+    height: 100vh;
     flex-direction: column;
     flex-grow: 2;
     background-color: #E7D38C;
     overflow-x: auto;
-    width: 50%;
+    width: 63vw;
    
   
     
@@ -214,6 +217,11 @@ ul {
     flex-grow: 2;
     background-color: #394a769d;
 }
+.details{
+  
+    border-style: solid;
+   
+}
 
 p {
     line-height: 1.8rem;
@@ -229,6 +237,18 @@ typing 3.5s steps(40, end),
 blink-caret .75s step-end infinite;*/
 }
 
+.detail-area {
+    height: 70vh;
+    width: 63vw;
+  
+    
+}
+.detail-area p {
+  
+    overflow-y: hidden;
+    padding: 5%;
+}
+
 .sides {
     display: flex;
     flex-direction: column;
@@ -241,6 +261,17 @@ blink-caret .75s step-end infinite;*/
 }
 
 .more {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    height: 50px;
+   
+}
+.waiting {
     display: flex;
     flex-direction: row;
     width: 100%;
