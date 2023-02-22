@@ -90,12 +90,14 @@ h5 {
     flex-direction: column;
     border: solid;
     height: auto;
-    max-height: 600px;
     position: relative;
     z-index: 1;
     border-color: inherit;
+    transition: all 2s;
 }
-
+.mid-content {
+    display: flex;
+}
 li {
     margin: 0px;
 }
@@ -107,7 +109,8 @@ ul {
 .expand-frame {
     width: 70%;
     max-width: none;
-    min-height: 70%;
+    transition: all 2s;
+    /* min-height: 70%; */
    
 }
 
@@ -118,8 +121,8 @@ ul {
     border-right-width: 0px;
     border-style: solid;
     height: auto;
-    flex-shrink: 2;
-    max-height: 400px;
+  
+  
     min-height: 450px;
     flex-grow: 2;
     overflow: hidden;
@@ -132,10 +135,7 @@ ul {
     position: absolute;
     top: 0;
 }
-.option{
-    visibility: hidden;
-   
-}
+
 
 /* this is the supposed popup to show roadmap */
 .roadmap {
@@ -150,8 +150,6 @@ ul {
     overflow-x: auto;
     width: 63vw;
    
-  
-    
 }
 /* .roadmap .quater{
     min-width: 100%;
@@ -305,9 +303,9 @@ blink-caret .75s step-end infinite;*/
     justify-content: flex-start;
     overflow: hidden;
     align-items: center;
-    height: 100%;
+    height: 50px;
     flex-grow: 1;
-    flex-shrink: 1;
+   
 }
 
 
@@ -320,8 +318,6 @@ blink-caret .75s step-end infinite;*/
    height: auto;
    min-height: 50px;
    flex-grow: 1;
-   
- 
    gap: 10px;
   
 }
@@ -333,7 +329,6 @@ blink-caret .75s step-end infinite;*/
     justify-content: space-between;
     gap: 5%;
     height: 50px;
-    
 }
 
 .logo-string  h4, [fill],[stroke] {
