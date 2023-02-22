@@ -1,6 +1,7 @@
 * {
 border-color: var(--border-color-darkbrown);
 /* border: var(--border-color-white); */
+transition: all 2s;
 
 
 }
@@ -93,10 +94,11 @@ h5 {
     position: relative;
     z-index: 1;
     border-color: inherit;
-    transition: all 2s;
+    transition: transform 2s;
 }
 .mid-content {
     display: flex;
+    max-height: 400px;
 }
 li {
     margin: 0px;
@@ -107,9 +109,10 @@ ul {
 }
 /* use this to expand the mainframe with to test out the js function */
 .expand-frame {
-    width: 70%;
+    /* width: 70%; */
     max-width: none;
-    transition: all 2s;
+    transition: tranform;
+    transition-duration: 2s;
     /* min-height: 70%; */
    
 }
@@ -121,9 +124,7 @@ ul {
     border-right-width: 0px;
     border-style: solid;
     height: auto;
-  
-  
-    min-height: 450px;
+    max-height: 500px;
     flex-grow: 2;
     overflow: hidden;
     color: hsl(28, 72%, 53%);
@@ -205,6 +206,20 @@ ul {
     color: #554E4E;
     gap: 15px;
     padding: 0px 10px;
+    cursor: pointer;
+    }
+
+    .detail-title {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        border: 0 solid;
+        border-bottom:2px;
+        justify-content: space-between;
+        align-items: center;
+        /* background-color: #554E4E; */
+        height: 50px;
+        padding: 10px;
     }
 
 .content {
@@ -220,6 +235,7 @@ ul {
     border-style: solid;
    
 }
+
 
 p {
     line-height: 1.8rem;
@@ -308,7 +324,30 @@ blink-caret .75s step-end infinite;*/
    
 }
 
+.next {
+    
+    cursor: pointer;
+    position: relative;
+    right: 0%;
+  border-left: 1px solid;
+  max-width: 60px;
+  flex-shrink: 1;
+  position: relative;
+  left: 0;
+  width: 50px;
+}
 
+.close {
+    width: 50px;
+cursor: pointer;
+padding-right: 5px;
+border: 2px 0px solid;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: aquamarine;
+}
 
 .cta {
     display: flex;
@@ -318,24 +357,32 @@ blink-caret .75s step-end infinite;*/
    height: auto;
    min-height: 50px;
    flex-grow: 1;
-   gap: 10px;
+     gap: 10px;
   
 }
 /* the header and footer-ish looking things */
 .logo-string {
-    width: 200%;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 5%;
     height: 50px;
 }
 
-.logo-string  h4, [fill],[stroke] {
+/* .logo-string  h4, [fill],[stroke] {
     fill: var( --border-color-darkbrown);
     /* stroke: var( --border-color-darkbrown); */
-    color: var( --border-color-darkbrown);
+    /* color: var( --border-color-darkbrown);
+} */ 
+.colorLogo {
+    width: 100%;
+display: none;
+flex-direction: row;
+justify-content: space-between;
 }
+
 
 .logo {
     flex-shrink: 0;
