@@ -1,7 +1,8 @@
 * {
 border-color: var(--border-color-darkbrown);
 /* border: var(--border-color-white); */
-transition: all 2s;
+border-width: 1px;
+transition: transform 2s;
 
 
 }
@@ -12,6 +13,7 @@ transition: all 2s;
     --border-color-white: hsl(0, 0%, 100%);
     --border-color-darkbrown: hsl(28, 72%, 53%);
     --border-color-lightgreen: hsl(102, 50%, 69%);
+    --background-color-darkness: hsl(300, 3%, 6%);
     --background-color-primary: #FAE69E;
     --background-color-lightyellow: #FAE69E;
     --background-color-secondary: hsl(28, 72%, 53%);
@@ -34,7 +36,7 @@ transition: all 2s;
     
 
 body {
-    font-family: 'poppins', sans-serif;
+    font-family: 'space grotesk', sans-serif;
     @font-face {
         font-family: 'strretch', sans-serif;
         src: url(fonts/strretch-sans.ttf) format('truetype');
@@ -43,10 +45,7 @@ body {
     height: 100vh;
     width: 100vw;
     color: rgb(255, 255, 255);
-    background-color: var(--background-color-lightyellow);
-    background-image: url(pics/noise-texture.png);
-    background-repeat: repeat;
-    background-size: 19% 19%;
+    background-color: #0a080a;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -54,7 +53,28 @@ body {
     margin: 0;
     flex-direction: column;
 }
-
+body::before {
+    content:"";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-image: url(pics/space-2.gif);
+    background-size: 10%;
+    opacity: .2;
+    background-blend-mode: exclusion;
+}
+body::after {
+    content:"";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-image: url(pics/Stars-GIF.gif);
+    background-size: 20%;
+    /* background-blend-mode: exclusion; */
+    opacity: .2;
+}
 a {
     text-decoration: none;
     display: flex;
@@ -62,14 +82,23 @@ a {
 }
 
 .body-overlay {
-    background-color: var(--background-color-primary);
-    opacity: .90;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.86%, #7321DB 100%);
+    opacity: .15;
     position: absolute;
     height: 100%;
     width: 100%;
+    opacity: .4;
     z-index: 0;
 }
-
+.body-overlay::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(pics/noise-texture.png);
+    background-size: 5%;
+    opacity: .1;
+}
 h4 {
     font-family: 'Strretch sans', sans-serif;
     color: #fff;
@@ -83,18 +112,31 @@ h4 {
 h5 {
  letter-spacing: 1.4px;
 }
+
+.blurred-bg {
+    background-image: url(pics/colorful-bg.svg);
+    background-size: 90%;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    filter: blur(20px);
+}
+
 .main-frame {
     margin: auto;
     width: 70vw;
     max-width: 700px;
+    height:65vh;
     display: flex;
     flex-direction: column;
     border: solid;
-    height: auto;
+    min-height: 550px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     border-color: inherit;
     transition: transform 2s;
+
 }
 .mid-content {
     display: flex;
@@ -120,8 +162,7 @@ ul {
 .mid {
     display: flex;
     flex-direction: row;
-    border-left-width: 0px;
-    border-right-width: 0px;
+   border-width: 1px 0px;
     border-style: solid;
     height: auto;
     max-height: 500px;
@@ -223,12 +264,17 @@ ul {
     }
 
 .content {
+    color:#fff;
     border-width: 0px 2px;
     border-style: solid;
     display: flex;
     flex-direction: column;
     flex-grow: 2;
-    background-color: #394a769d;
+    background-color: #394a762b;
+    scrollbar-width: none;
+}
+.content ::-webkit-scrollbar {
+    display: none;
 }
 .details{
   
@@ -272,6 +318,7 @@ blink-caret .75s step-end infinite;*/
     align-items: center;
     align-self: center;
     justify-self: center;
+    color: #fff;
 }
 
 .more {
@@ -319,7 +366,7 @@ blink-caret .75s step-end infinite;*/
     justify-content: flex-start;
     overflow: hidden;
     align-items: center;
-    height: 50px;
+    max-height: 50px;
     flex-grow: 1;
    
 }
@@ -364,13 +411,24 @@ background-color: aquamarine;
 .logo-string {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5%;
     height: 50px;
+    padding-left: 5%;
 }
+.logo-string div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5%;
+    height: 50px;
+   
 
+}
 /* .logo-string  h4, [fill],[stroke] {
     fill: var( --border-color-darkbrown);
     /* stroke: var( --border-color-darkbrown); */
