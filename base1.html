@@ -11,12 +11,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/x-icon" href="/icons/logo.svg">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=poppins=swap" rel="stylesheet">
 
 
-    
 </head>
 
 <body>
@@ -25,6 +25,7 @@
         <div class="top-bot">
             <div class="logo-string">
                 <div>
+                    <img id="close-road" style="position: absolute; right: 10px;"  src="icons/close.svg">
                     <img  src="pics/logo-line.svg">
                     <img  src="pics/logo-line.svg">
                     <!-- on ROADMAP click, script hides the first and reveals the second -->
@@ -85,9 +86,9 @@
                         </div>
 
                         <div style="height: 80% ;display: flex; position: relative; ">
-                            <div class="details-description" style="overflow: auto;">
+                            <div class="details-description" style="overflow: hidden;">
                                 <div class="row" style=" display: flex; height: 100%;">
-                                    <div class="text-area" style="width: 50%;overflow: auto; height: 100%;">
+                                    <div class="text-area" style="width: 50%;overflow: hidden; max-height: 100%;">
                                         <p>We're on a mission to unleash the potential of young people in the tech
                                             industry!
                                             At Bromuno, we're passionate about providing the resources and support
@@ -108,7 +109,7 @@
                                             future together!</p>
                                     </div>
                                     <div
-                                        style="flex-basis:auto; flex-grow: 1; display: flex; justify-content: center; align-items: center;">
+                                        style="width: 50%; display: flex; justify-content: center; align-items: center;">
                                         <img src="icons/Q1.svg" style="height: auto;width: 200px;" alt="">
                                     </div>
 
@@ -265,6 +266,8 @@
             var lf = document.getElementById('option');
             var roadMapContainer = document.querySelector(".list");
 
+            closeRoad.style.display = "none"
+
 
             close.addEventListener("click", function () {
 
@@ -334,7 +337,7 @@
             });
 
             button.addEventListener('click', function () {
-
+                closeRoad.style.display = "block"
                 mainFrame.classList.add('expand-frame');
                 mainView.classList.add('initial');
                 roadmapView.classList.remove('initial');
@@ -352,7 +355,7 @@
                 });
             });
             closeRoad.addEventListener('click', function () {
-
+                closeRoad.style.display = "none"
                 mainFrame.classList.remove('expand-frame');
                 mainView.classList.remove('initial');
                 roadmapView.classList.add('initial');

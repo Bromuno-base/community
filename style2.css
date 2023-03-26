@@ -170,6 +170,9 @@ ul {
     overflow: hidden;
     color: hsl(28, 72%, 53%);
 }
+.row{
+    display: flex;
+}
 .initial{
     display: none;
 }
