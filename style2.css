@@ -1,5 +1,5 @@
 * {
-border-color: var(--border-color-darkbrown);
+border-color: var(--border-color);
 /* border: var(--border-color-white); */
 border-width: 1px;
 transition: transform 2s;
@@ -10,13 +10,11 @@ transition: transform 2s;
 
 /* Bromuno colors. I'm still learning how to use variables by the way */
 :root {
-    --border-color-white: hsl(0, 0%, 100%);
-    --border-color-darkbrown: hsl(28, 72%, 53%);
-    --border-color-lightgreen: hsl(102, 50%, 69%);
-    --background-color-darkness: hsl(300, 3%, 6%);
-    --background-color-primary: #FAE69E;
-    --background-color-lightyellow: #FAE69E;
-    --background-color-secondary: hsl(28, 72%, 53%);
+    --border-top: 0 2px 0 0;
+    --border-right: 0 2px 0 0;
+    --border-bottom: 0 0 2px 0;
+    --border-left: 0 0 0 2px;
+    --border-color: white;
   
 }
 
@@ -205,7 +203,7 @@ ul {
 .quaters-frame {
     /* position: absolute; */
     display: flex;
-    height: 1;
+    height: 100%;
     width: 100%;
     min-height: 450px;
     overflow-x: auto;
@@ -255,15 +253,14 @@ ul {
 
     .detail-title {
         display: flex;
-        flex-direction: row;
         width: 100%;
         border: 0 solid;
-        border-bottom:2px;
+        border-width: var(--border-bottom);
         justify-content: space-between;
         align-items: center;
-        /* background-color: #554E4E; */
         height: 50px;
-        padding: 10px;
+        padding: 0px 10px;
+        overflow:hidden;
     }
 
 .content {
@@ -391,12 +388,12 @@ blink-caret .75s step-end infinite;*/
     width: 50px;
 cursor: pointer;
 padding-right: 5px;
-border: 2px 0px solid;
+border-style: solid;
+border-width: var(--border-left);
 height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: aquamarine;
 }
 
 .cta {
