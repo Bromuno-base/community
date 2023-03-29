@@ -420,6 +420,7 @@ background-color: aquamarine;
     gap: 5%;
     height: 50px;
     padding-left: 5%;
+    position: relative;
 }
 .logo-string div {
     width: 100%;
