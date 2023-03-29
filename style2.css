@@ -205,7 +205,7 @@ ul {
 .quaters-frame {
     /* position: absolute; */
     display: flex;
-    height: auto;
+    height: 1;
     width: 100%;
     min-height: 450px;
     overflow-x: auto;
