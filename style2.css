@@ -205,11 +205,12 @@ ul {
 .quaters-frame {
     /* position: absolute; */
     display: flex;
-    height: 1;
+    height: 100%;
     width: 100%;
     min-height: 450px;
     overflow-x: auto;
     z-index: 0;
+
 }
 
 .quater {
