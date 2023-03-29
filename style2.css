@@ -191,7 +191,7 @@ ul {
     height: 100vh;
     flex-direction: column;
     flex-grow: 2;
-    background-color: #E7D38C;
+    /* background-color: #E7D38C; */
     overflow-x: auto;
     width: 63vw;
    
@@ -233,7 +233,7 @@ ul {
     align-items: center;
     height: 80px;
     width: 100%;
-    background-color: #DFCF97;
+    /* background-color: #DFCF97; */
     border-style: solid;
     border-width: 0px 0px 1.5px 0px;
 }
@@ -247,7 +247,7 @@ ul {
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    color: #554E4E;
+    /* color: #554E4E; */
     gap: 15px;
     padding: 0px 10px;
     cursor: pointer;
