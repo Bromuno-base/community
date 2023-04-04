@@ -24,11 +24,14 @@
         <div class="top-bot">
             <div class="logo-string">
                 <div>
-                    
-                    <img  src="pics/logo-line.svg">
-                    <img  src="pics/logo-line.svg">                 
+                    <img src="pics/logo-line.svg">
+                    /
+                    <h2>ROAD MAP</h2>
                 </div>
-                <img id="close-road" class="close" style="position: absolute; right: 10px;"  src="icons/close.svg">
+                <div id="close-road" class="close">
+                    <img src="icons/close.svg">
+                </div>
+
             </div>
 
 
@@ -59,10 +62,10 @@
             </div>
             <div class="sides">/</div>
         </div>
-        <div class="mid initial" id="roadmap-view">
+        <div class="mid initial" id="roadmap-view" >
             <div class="sides">/</div>
             <!-- this is the roadmap content -->
-            <div style="position: relative;">
+            <div style="position: relative; flex-grow: 1;" >
                 <div class="roadmap" id="option">
                     <div class="quaters-frame border-right">
 
@@ -74,19 +77,14 @@
                         <div class="detail-title">
                             <h3>title</h3>
                             <div class="close" id="close">
-                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M6.9 19L5.5 17.6L11.1 12L5.5 6.4L6.9 5L12.5 10.6L18.1 5L19.5 6.4L13.9 12L19.5 17.6L18.1 19L12.5 13.4L6.9 19Z"
-                                        fill="#CE7B2E" />
-                                </svg>
+                                <img src="icons/close.svg" alt="">
                             </div>
                         </div>
 
-                        <div style="height: 80% ;display: flex; position: relative; ">
-                            <div class="details-description" style="overflow: auto;">
-                                <div class="row" style=" display: flex; height: 100%;">
-                                    <div class="text-area" style="width: 50%;overflow: auto; height: 100%;">
+                        <div style="height: 86% ;display: flex; position: relative; overflow: hidden; ">
+                            <div class="details-description">
+                                <div class="details-row">
+                                    <div class="text-area">
                                         <p>We're on a mission to unleash the potential of young people in the tech
                                             industry!
                                             At Bromuno, we're passionate about providing the resources and support
@@ -218,9 +216,10 @@
         <div class="top-bot">
 
             <div class="logo-string">
-                <img class="whiteLogo" src="pics/logo-line.svg">
-                <!-- on ROADMAP click hide first and reveal last -->
-                <img class="whiteLogo src="pics/logo-line.svg">
+                <div class="pattern">
+                    <img src="pics/logo-line.svg">/
+                    <img src="pics/logo-line.svg">
+                </div>
 
             </div>
 
