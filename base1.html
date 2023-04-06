@@ -25,7 +25,7 @@
             <div class="logo-string">
                 <div>
                     <img src="pics/logo-line.svg">
-                    /
+                    
                     <h2>ROAD MAP</h2>
                 </div>
                 <div id="close-road" class="close">
@@ -264,6 +264,8 @@
             var lf = document.getElementById('option');
             var roadMapContainer = document.querySelector(".list");
 
+            closeRoad.style.display="none";
+
 
             close.addEventListener("click", function () {
 
@@ -339,6 +341,7 @@
                 roadmapView.classList.remove('initial');
                 var borderColor = "#dd8131";
                 var bodyColor = "#FAE69E";
+                closeRoad.style.display = "flex";
 
 
 
@@ -357,6 +360,7 @@
                 roadmapView.classList.add('initial');
                 var borderColor = "#dd8131";
                 var bodyColor = "#FAE69E";
+                closeRoad.style.display = "none";
                 // const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
                 document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
                 document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
