@@ -25,7 +25,7 @@
             <div class="logo-string">
                 <div>
                     <img src="pics/logo-line.svg">
-                    
+
                     <h2>ROAD MAP</h2>
                 </div>
                 <div id="close-road" class="close">
@@ -62,10 +62,10 @@
             </div>
             <div class="sides">/</div>
         </div>
-        <div class="mid initial" id="roadmap-view" >
+        <div class="mid initial" id="roadmap-view">
             <div class="sides">/</div>
             <!-- this is the roadmap content -->
-            <div style="position: relative; flex-grow: 1;" >
+            <div style="position: relative; flex-grow: 1;">
                 <div class="roadmap" id="option">
                     <div class="quaters-frame border-right">
 
@@ -75,14 +75,22 @@
                 <div class="details" id="detail">
                     <div class="detail-area">
                         <div class="detail-title">
-                            <span> <h3>title</h3><span class="title-right"> <p id="item-date">date:</p><p style="color: #49D157">4th June</p><p id="item-status">status:</p><p style="color: #49D157">success</p></span></span>
-                           
+                            <span>
+                                <h3>title</h3><span class="title-right">
+                                    <p id="item-date">date:</p>
+                                    <p style="color: #49D157">4th June</p>
+                                    <p id="item-status">status:</p>
+                                    <p style="color: #49D157">success</p>
+                                </span>
+                            </span>
+
                             <div class="close" id="close">
                                 <img src="icons/close.svg" alt="">
                             </div>
                         </div>
 
-                        <div style="height: calc(100% - 50px); display: flex; position: relative; overflow: hidden; ">
+                        <div id="pop-container"
+                            style="height: calc(100% - 50px); display: flex; position: relative; overflow: hidden; ">
                             <div class="details-description">
                                 <div class="details-row">
                                     <div class="text-area">
@@ -233,6 +241,7 @@
         const mainFrame = document.getElementById('main');
         const roadmapView = document.getElementById('roadmap-view');
         const mainView = document.getElementById('main-view');
+        const popContainer = document.getElementById('pop-container');
         const button = document.getElementById('cta');
         const more = document.querySelectorAll('.more');
         document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
@@ -264,7 +273,7 @@
             var lf = document.getElementById('option');
             var roadMapContainer = document.querySelector(".list");
 
-            closeRoad.style.display="none";
+            closeRoad.style.display = "none";
 
 
             close.addEventListener("click", function () {
@@ -277,6 +286,7 @@
 
             })
             const itemsRef = firebase.firestore().collection('ROADMAP');
+            const imgElement = document.querySelector('.details-row img');
 
 
             itemsRef.get().then(querySnapshot => {
@@ -291,6 +301,7 @@
 
 
 
+
                     const list = firebase.firestore().collection("ROADMAP").doc(doc.id).collection("list");
 
                     list.get().then(subitemDoc => {
@@ -301,6 +312,7 @@
                             subitemElement.classList.add('list');
                             subitemElement.setAttribute("id", "list");
 
+
                             if (subItem.data().status === "done") {
                                 item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
 
@@ -308,26 +320,31 @@
                                 item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
                             }
                             item.appendChild(subitemElement);
+                            // var images = document.querySelectorAll(".quater-objective");
 
+                            item.forEach(function (image) {
+                                item.addEventListener("click", function () {
+
+                                    console.log(subItem.data().image);
+
+                                    imgElement.src = subItem.data().image;
+                                    // imgElement.src = 'path/to/new/image.png';
+
+
+
+                                    ll.style.display = "block"
+                                    ll.style.transition = "left 10s ease-in-out"
+                                    lf.style.display = "none"
+
+
+
+
+                                })
+                            });
 
                         });
 
-                        var images = document.querySelectorAll(".quater-objective");
 
-                        images.forEach(function (image) {
-                            image.addEventListener("click", function () {
-
-
-
-                                ll.style.display = "block"
-                                ll.style.transition = "left 10s ease-in-out"
-                                lf.style.display = "none"
-
-
-
-
-                            })
-                        })
 
                     });
 
