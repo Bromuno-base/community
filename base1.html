@@ -11,6 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="icons/logo.svg" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=poppins=swap" rel="stylesheet">
@@ -76,11 +77,11 @@
                     <div class="detail-area">
                         <div class="detail-title">
                             <span>
-                                <h3>title</h3><span class="title-right">
-                                    <p id="item-date">date:</p>
-                                    <p style="color: #49D157">4th June</p>
-                                    <p id="item-status">status:</p>
-                                    <p style="color: #49D157">success</p>
+                                <h3 id="item-title">title</h3><span class="title-right">
+                                    <p >date:</p>
+                                    <p id="item-date" style="color: #49D157">4th June</p>
+                                    <p >status:</p>
+                                    <p id="item-status" style="color: #49D157">success</p>
                                 </span>
                             </span>
 
@@ -94,24 +95,12 @@
                             <div class="details-description">
                                 <div class="details-row">
                                     <div class="text-area">
-                                        <p>We're on a mission to unleash the potential of young people in the tech
+                                        <p id="item-description"> We're on a mission to unleash the potential of young people in the tech
                                             industry!
                                             At Bromuno, we're passionate about providing the resources and support
                                             necessary for them to
                                             succeed in a rapidly advancing world.</p>
-                                        <p>
-                                            With exciting opportunities for education and training, the guidance of
-                                            experienced mentors,
-                                            valuable networking experiences,
-                                            and access to cutting-edge technology tools, there's nothing that can stop
-                                            our youth from
-                                            reaching their full potential.</p>
-                                        <p>
-                                            And with a supportive and inclusive community that values and celebrates
-                                            diversity,
-                                            the sky's the limit for these young tech trailblazers! Join us and let's
-                                            create a brighter
-                                            future together!</p>
+                                       
                                     </div>
                                     <div
                                         style="flex-basis:auto; flex-grow: 1; display: flex; justify-content: center; align-items: center;">
@@ -244,10 +233,9 @@
         const popContainer = document.getElementById('pop-container');
         const button = document.getElementById('cta');
         const more = document.querySelectorAll('.more');
-        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
-        document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
-        // mainFrame.style.color = "white";
-        // mainFrame.style.color = "white";
+        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); 
+        document.documentElement.style.setProperty("--background-color-primary", "green"); 
+    
 
 
         const firebaseConfig = {
@@ -260,132 +248,157 @@
             measurementId: "G-JEWBT1H9CW"
         };
 
-        // Initialize Firebase
+      
         firebase.initializeApp(firebaseConfig)
-        // const app = initializeApp(firebaseConfig);
-        // const analytics = getAnalytics(app);
+
         const db = firebase.firestore();
-        var v = db.collection("HOME");
-        window.onload = function () {
-            var close = document.getElementById('close');
-            var closeRoad = document.getElementById('close-road');
-            var ll = document.getElementById('detail');
-            var lf = document.getElementById('option');
-            var roadMapContainer = document.querySelector(".list");
+        var homeCollection = db.collection("HOME");
 
-            closeRoad.style.display = "none";
+        var close = document.getElementById('close');
+        var closeRoad = document.getElementById('close-road');
+        var ll = document.getElementById('detail');
+        var lf = document.getElementById('option');
+        var roadMapContainer = document.querySelector(".list");
 
-
-            close.addEventListener("click", function () {
-
-                if (ll.style.display === "block") {
-                    ll.style.display = "none"
-                    lf.style.display = "flex"
-                }
+        closeRoad.style.display = "none";
 
 
-            })
-            const itemsRef = firebase.firestore().collection('ROADMAP');
-            const imgElement = document.querySelector('.details-row img');
+        close.addEventListener("click", function () {
+
+            if (ll.style.display === "block") {
+                ll.style.display = "none"
+                lf.style.display = "flex"
+            }
 
 
-            itemsRef.get().then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    const container = document.querySelector('.quaters-frame');
+        })
+        const itemsRef = firebase.firestore().collection('ROADMAP');
+        const imgElement = document.querySelector('.details-row img');
+        const text = document.querySelector('.text-area p');
+        const container = document.querySelector('.quaters-frame');
 
-                    const item = document.createElement('div');
-                    item.innerHTML = '<div class="quater-title"> <img src=' + doc.data().image + ' alt=""></div>';
-                    item.classList.add('quater');
-                    console.log(doc.id)
-                    container.appendChild(item);
-
+        itemsRef.get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
 
 
-
-                    const list = firebase.firestore().collection("ROADMAP").doc(doc.id).collection("list");
-
-                    list.get().then(subitemDoc => {
-
-                        subitemDoc.forEach((subItem) => {
-                            console.log(subItem.id, " => ", subItem.data().name);
-                            const subitemElement = document.createElement('ul');
-                            subitemElement.classList.add('list');
-                            subitemElement.setAttribute("id", "list");
+                const item = document.createElement('div');
+                item.innerHTML = '<div class="quater-title"> <img src=' + doc.data().image + ' alt=""></div>';
+                item.classList.add('quater');
+                console.log(doc.id)
 
 
-                            if (subItem.data().status === "done") {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
 
-                            } else {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
+
+
+                const list = firebase.firestore().collection("ROADMAP").doc(doc.id).collection("list");
+
+                list.get().then(subitemDoc => {
+
+                    subitemDoc.forEach((subItem) => {
+                        console.log(subItem.id, " => ", subItem.data().name);
+                        const subitemElement = document.createElement('ul');
+                        var images = document.querySelectorAll(".quater-objective");
+
+                        if (subItem.data().status === "done") {
+                            subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
+                        } else {
+                            subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
+                        }
+
+
+
+
+
+                       
+
+                            subitemElement.removeEventListener('click', divClickHandler);
+
+                         
+                            subitemElement.addEventListener('click', divClickHandler);
+
+                            function divClickHandler() {
+                           
+                                console.log(subItem.data().name);
+                                console.log(subItem.data().image);
+                                const itemTitle = document.getElementById('item-title');
+                                const itemDate = document.getElementById('item-date');
+                                const itemDescription = document.getElementById('item-description');
+                                const itemStatus = document.getElementById('item-status');
+
+                                itemTitle.innerHTML = subItem.data().name;
+                                itemDate.innerHTML = subItem.data().date;
+                                itemStatus.innerHTML = subItem.data().status;
+                              
+                               
+
+                                imgElement.src = subItem.data().image;
+                                itemDescription.innerHTML = subItem.data().description;
+                          
+
+
+
+                                ll.style.display = "block";
+                                ll.style.transition = "left 10s ease-in-out";
+                                lf.style.display = "none";
                             }
-                            item.appendChild(subitemElement);
-                            // var images = document.querySelectorAll(".quater-objective");
+                          
 
-                            item.forEach(function (image) {
-                                item.addEventListener("click", function () {
-
-                                    console.log(subItem.data().image);
-
-                                    imgElement.src = subItem.data().image;
-                                    // imgElement.src = 'path/to/new/image.png';
+                        item.appendChild(subitemElement);
 
 
-
-                                    ll.style.display = "block"
-                                    ll.style.transition = "left 10s ease-in-out"
-                                    lf.style.display = "none"
-
-
-
-
-                                })
-                            });
-
-                        });
 
 
 
                     });
 
+
+
                 });
+
+
+
+                container.appendChild(item);
+
             });
 
-            button.addEventListener('click', function () {
-
-                mainFrame.classList.add('expand-frame');
-                mainView.classList.add('initial');
-                roadmapView.classList.remove('initial');
-                var borderColor = "#dd8131";
-                var bodyColor = "#FAE69E";
-                closeRoad.style.display = "flex";
+        });
 
 
+        button.addEventListener('click', function () {
 
-                // const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-                document.documentElement.style.setProperty("--border-color-darkbrown", borderColor); // Update the value of the CSS variable
-                document.documentElement.style.setProperty("--background-color-primary", bodyColor); // Update the value of the CSS variable
-                // mainFrame.style.color = randomColor; //
-                more.forEach(element => {
-                    element.classList.add('hide-more');
-                });
+            mainFrame.classList.add('expand-frame');
+            mainView.classList.add('initial');
+            roadmapView.classList.remove('initial');
+            var borderColor = "#dd8131";
+            var bodyColor = "#FAE69E";
+            closeRoad.style.display = "flex";
+
+
+
+           
+            document.documentElement.style.setProperty("--border-color-darkbrown", borderColor); 
+            document.documentElement.style.setProperty("--background-color-primary", bodyColor); 
+         
+            more.forEach(element => {
+                element.classList.add('hide-more');
             });
-            closeRoad.addEventListener('click', function () {
+        });
+        closeRoad.addEventListener('click', function () {
 
-                mainFrame.classList.remove('expand-frame');
-                mainView.classList.remove('initial');
-                roadmapView.classList.add('initial');
-                var borderColor = "#dd8131";
-                var bodyColor = "#FAE69E";
-                closeRoad.style.display = "none";
-                // const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-                document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
-                document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
-                // mainFrame.style.color = randomColor; //
-                more.forEach(element => {
-                    element.classList.remove('hide-more');
-                });
+            mainFrame.classList.remove('expand-frame');
+            mainView.classList.remove('initial');
+            roadmapView.classList.add('initial');
+            var borderColor = "#dd8131";
+            var bodyColor = "#FAE69E";
+            closeRoad.style.display = "none";
+           
+            document.documentElement.style.setProperty("--border-color-darkbrown", "white"); 
+            document.documentElement.style.setProperty("--background-color-primary", "green"); 
+        
+            more.forEach(element => {
+                element.classList.remove('hide-more');
             });
-        }
+        });
+
     </script>
 </body>
