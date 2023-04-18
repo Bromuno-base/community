@@ -238,18 +238,6 @@
     <div class="body-overlay"></div>
 
     <script>
-        const mainFrame = document.getElementById('main');
-        const roadmapView = document.getElementById('roadmap-view');
-        const mainView = document.getElementById('main-view');
-        const popContainer = document.getElementById('pop-container');
-        const button = document.getElementById('cta');
-        const more = document.querySelectorAll('.more');
-        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
-        document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
-        // mainFrame.style.color = "white";
-        // mainFrame.style.color = "white";
-
-
         const firebaseConfig = {
             apiKey: "AIzaSyDUQtBHJtPqVwwono1xnhXa5W5gZt8-S3k",
             authDomain: "bromuno-3c475.firebaseapp.com",
@@ -259,11 +247,19 @@
             appId: "1:582092395093:web:64fd061dbd2854ba39badc",
             measurementId: "G-JEWBT1H9CW"
         };
-
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig)
-        // const app = initializeApp(firebaseConfig);
-        // const analytics = getAnalytics(app);
+
+
+        const mainFrame = document.getElementById('main');
+        const roadmapView = document.getElementById('roadmap-view');
+        const mainView = document.getElementById('main-view');
+        const popContainer = document.getElementById('pop-container');
+        const button = document.getElementById('cta');
+        const more = document.querySelectorAll('.more');
+        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); 
+        document.documentElement.style.setProperty("--background-color-primary", "green"); 
+     
+
         const db = firebase.firestore();
         var v = db.collection("HOME");
         window.onload = function () {
@@ -314,21 +310,20 @@
 
 
                             if (subItem.data().status === "done") {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
+                                subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
 
                             } else {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
+                                subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
                             }
-                            item.appendChild(subitemElement);
+                            subitemElement.appendChild(item);
                             // var images = document.querySelectorAll(".quater-objective");
 
-                            item.forEach(function (image) {
-                                item.addEventListener("click", function () {
+                         
+                                subitemElement.addEventListener("click", function () {
 
                                     console.log(subItem.data().image);
 
                                     imgElement.src = subItem.data().image;
-                                    // imgElement.src = 'path/to/new/image.png';
 
 
 
@@ -340,7 +335,7 @@
 
 
                                 })
-                            });
+                      
 
                         });
 
