@@ -352,7 +352,8 @@ blink-caret .75s step-end infinite;*/
 .detail-area {
     height: 100%;
     width: 100%;
-    background-color: #1c252b94;
+    /* background-color: #1c252b94; */
+    background-color: #1c252bc4;
 
 
 }
