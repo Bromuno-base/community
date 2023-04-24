@@ -3,7 +3,8 @@
     /* border: var(--border-color-white); */
     border-width: 1px;
     transition: transform 2s;
-    color: white
+    color: white;
+    
 }
 
 
