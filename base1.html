@@ -25,7 +25,7 @@
             <div class="logo-string">
                 <div>
                     <img src="pics/logo-line.svg">
-                    /
+
                     <!-- <h2>ROAD MAP</h2> -->
                 </div>
                 <div id="close-road" class="close">
@@ -62,10 +62,10 @@
             </div>
             <div class="sides">/</div>
         </div>
-        <div class="mid initial" id="roadmap-view" >
+        <div class="mid initial" id="roadmap-view">
             <div class="sides">/</div>
             <!-- this is the roadmap content -->
-            <div style="position: relative; flex-grow: 1;" >
+            <div style="position: relative; flex-grow: 1;">
                 <div class="roadmap" id="option">
                     <div class="quaters-frame border-right">
 
@@ -85,7 +85,8 @@
                             </div>
                         </div>
 
-                        <div style="height: calc(100% - 50px); display: flex; position: relative; overflow: hidden; ">
+                        <div id="pop-container"
+                            style="height: calc(100% - 50px); display: flex; position: relative; overflow: hidden; ">
                             <div class="details-description">
                                 <div class="details-row">
                                     <div class="text-area">
@@ -233,17 +234,6 @@
     <div class="body-overlay"></div>
 
     <script>
-        const mainFrame = document.getElementById('main');
-        const roadmapView = document.getElementById('roadmap-view');
-        const mainView = document.getElementById('main-view');
-        const button = document.getElementById('cta');
-        const more = document.querySelectorAll('.more');
-        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
-        document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
-        // mainFrame.style.color = "white";
-        // mainFrame.style.color = "white";
-
-
         const firebaseConfig = {
             apiKey: "AIzaSyDUQtBHJtPqVwwono1xnhXa5W5gZt8-S3k",
             authDomain: "bromuno-3c475.firebaseapp.com",
@@ -253,11 +243,19 @@
             appId: "1:582092395093:web:64fd061dbd2854ba39badc",
             measurementId: "G-JEWBT1H9CW"
         };
-
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig)
-        // const app = initializeApp(firebaseConfig);
-        // const analytics = getAnalytics(app);
+
+
+        const mainFrame = document.getElementById('main');
+        const roadmapView = document.getElementById('roadmap-view');
+        const mainView = document.getElementById('main-view');
+        const popContainer = document.getElementById('pop-container');
+        const button = document.getElementById('cta');
+        const more = document.querySelectorAll('.more');
+        document.documentElement.style.setProperty("--border-color-darkbrown", "white"); 
+        document.documentElement.style.setProperty("--background-color-primary", "green"); 
+     
+
         const db = firebase.firestore();
         var v = db.collection("HOME");
         window.onload = function () {
@@ -266,6 +264,8 @@
             var ll = document.getElementById('detail');
             var lf = document.getElementById('option');
             var roadMapContainer = document.querySelector(".list");
+
+            closeRoad.style.display = "none";
 
 
             close.addEventListener("click", function () {
@@ -278,6 +278,7 @@
 
             })
             const itemsRef = firebase.firestore().collection('ROADMAP');
+            const imgElement = document.querySelector('.details-row img');
 
 
             itemsRef.get().then(querySnapshot => {
@@ -292,6 +293,7 @@
 
 
 
+
                     const list = firebase.firestore().collection("ROADMAP").doc(doc.id).collection("list");
 
                     list.get().then(subitemDoc => {
@@ -302,33 +304,38 @@
                             subitemElement.classList.add('list');
                             subitemElement.setAttribute("id", "list");
 
+
                             if (subItem.data().status === "done") {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
+                                subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 2.svg' alt='x'><h5 style='color: #F61063;'>" + subItem.data().name + "</h5></li>";
 
                             } else {
-                                item.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
+                                subitemElement.innerHTML += "<li class='quater-objective border-right' ><img src='icons/heart 1.svg' alt='x'><h5 >" + subItem.data().name + "</h5></li>";
                             }
-                            item.appendChild(subitemElement);
+                            subitemElement.appendChild(item);
+                            // var images = document.querySelectorAll(".quater-objective");
 
+                         
+                                subitemElement.addEventListener("click", function () {
+
+                                    console.log(subItem.data().image);
+
+                                    imgElement.src = subItem.data().image;
+
+
+
+                                    ll.style.display = "block"
+                                    ll.style.transition = "left 10s ease-in-out"
+                                    lf.style.display = "none"
+
+
+
+
+                                })
+                      
 
                         });
 
-                        var images = document.querySelectorAll(".quater-objective");
 
-                        images.forEach(function (image) {
-                            image.addEventListener("click", function () {
-
-
-
-                                ll.style.display = "block"
-                                ll.style.transition = "left 10s ease-in-out"
-                                lf.style.display = "none"
-
-
-
-
-                            })
-                        })
 
                     });
 
@@ -342,6 +349,7 @@
                 roadmapView.classList.remove('initial');
                 var borderColor = "#dd8131";
                 var bodyColor = "#FAE69E";
+                closeRoad.style.display = "flex";
 
 
 
@@ -360,6 +368,7 @@
                 roadmapView.classList.add('initial');
                 var borderColor = "#dd8131";
                 var bodyColor = "#FAE69E";
+                closeRoad.style.display = "none";
                 // const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
                 document.documentElement.style.setProperty("--border-color-darkbrown", "white"); // Update the value of the CSS variable
                 document.documentElement.style.setProperty("--background-color-primary", "green"); // Update the value of the CSS variable
